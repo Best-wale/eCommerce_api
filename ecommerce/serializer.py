@@ -14,15 +14,16 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ['id','category_name','contents']
 
-#class CartSerializer(serializers.ModelSerializer):
+class CartItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CartItem
+        fields = ('__all__')
 
-  #  class Meta:
-  #      model = Cart
-   #     fields = ('__all__')
-#class AllSerializer(serializers.ModelSerializer):
-#    cart = CartSerializer(many=True)
-#    cate = CategorySerializer(many=True)
- #   class Meta:
-  #      fields = ['cart','cate']
+class CartSerializer(serializers.ModelSerializer):
+    items = CartItemSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = Cart
+        fields = ('__all__')
 
 

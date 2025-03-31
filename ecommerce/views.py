@@ -1,11 +1,25 @@
 
-from rest_framework.views import APIView
+from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import Category
-from .serializer import CategorySerializer
+from .models import Category, Product,Cart,CartItem
+from .serializer import CategorySerializer,ProductSerializer,CartItemSerializer,CartSerializer
 
-class CategoryListAPIView(APIView):
-    def get(self, request):
-        categories = Category.objects.prefetch_related('contents')  # Optimize query using related name
-        serializer = CategorySerializer(categories, many=True)
-        return Response(serializer.data)
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+class CartViewSet(viewsets.ModelViewSet):
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+
+class CartItemViewSet(viewsets.ModelViewSet):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+
+
+
