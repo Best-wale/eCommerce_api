@@ -22,4 +22,4 @@ This project is a fully functional e-commerce platform designed for seamless use
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/ecommerce-django-api.git
+   git clone https://github.com/Best-wale/eCommerce_api.git
